@@ -4,9 +4,9 @@ class CreateCoins < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :symbol
       t.decimal :price
-      t.decimal :market_cap
+      t.decimal :market_cap, :precision => 18
       t.decimal :percentage_change_24h
-      t.decimal :volume
+      t.decimal :volume, :precision => 18
 
       t.timestamps
     end

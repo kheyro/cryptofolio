@@ -1,6 +1,6 @@
 class CoinsController < ApplicationController
   before_action :required_signed_in
-  before_action :required_admin, only: [:index]
+  before_action :required_admin, only: [:index, :update_coin_list]
 
   def show
     @coin = Coin.find_by(params[:id])
@@ -8,7 +8,7 @@ class CoinsController < ApplicationController
   end
 
   def index
-    @coins = Coin.all
+    @coins = Coin.all.order(:name)
   end
 
   def update_coin_list

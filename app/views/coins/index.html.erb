@@ -29,7 +29,7 @@
           <td class="text-center"><%= coin.symbol %></td>
           <td class="text-center"><%= coin.name %></td>
           <td class="text-right"><%= number_to_currency(coin.price) %></td>
-          <td class="text-right"><%= coin.percentage_change_24h %></td>
+          <td class="text-right"><%= display_percent(coin.percentage_change_24h/100) %></td>
           <td class="text-right"><%= number_to_currency(coin.volume) %></td>
           <td class="text-right"><%= number_to_currency(coin.market_cap) %></td>
         </tr>

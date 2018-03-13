@@ -49,10 +49,12 @@ class Coin < ApplicationRecord
     # t.decimal :percentage_change_24h
 
     response.each do |coin|
+      coin["volume_usd_24h"] = coin["24h_volume_usd"]
       self.where("lower(symbol) = ?", coin["symbol"].downcase).first_or_create! do |c|
         c.name = coin["name"]
         c.symbol = coin["symbol"]
         c.price = coin["price_usd"]
+        c.volume = coin["volume_usd_24h"]
         c.market_cap = coin["market_cap_usd"]
         c.percentage_change_24h = coin["percent_change_24h"]
         c.save

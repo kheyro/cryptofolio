@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20180313125347) do
     t.string "name"
     t.string "symbol"
     t.decimal "price"
-    t.decimal "market_cap"
+    t.decimal "market_cap", precision: 15
     t.decimal "percentage_change_24h"
-    t.decimal "volume"
+    t.decimal "volume", precision: 15
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
