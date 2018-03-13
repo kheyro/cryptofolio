@@ -11,7 +11,7 @@ class Coin < ApplicationRecord
       if t.trade_quantity > 0
         trades[:total] += t.coin.price * t.trade_quantity
         trades[:number_transaction] += 1
-        trades[:cumul_change] += t.trade_price / t.coin.price - 1
+        trades[:cumul_change] += 1 - t.trade_price / t.coin.price
         trades[:change] = trades[:cumul_change] / trades[:number_transaction]
       end
     end

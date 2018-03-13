@@ -11,7 +11,7 @@ class Transaction < ApplicationRecord
   scope :number_of_transactions, ->(user) { where("user_id = ?", user.id).count }
 
   def change_24h
-    self.trade_price / self.coin.price - 1
+    1 - self.trade_price / self.coin.price
   end
 
   private

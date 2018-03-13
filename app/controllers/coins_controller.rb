@@ -3,7 +3,7 @@ class CoinsController < ApplicationController
   before_action :required_admin, only: [:index, :update_coin_list]
 
   def show
-    @coin = Coin.find_by(params[:id])
+    @coin = Coin.find_by_id(params[:id])
     @transactions = @coin.transactions.where(:user => current_user)
   end
 
