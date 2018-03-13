@@ -4,10 +4,7 @@ Rails.application.routes.draw do
 
   root 'application#welcome'
 
-  resources :users do
-    resources :transactions
-  end
-
+  resources :users
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy', as: 'destroy_user'
@@ -15,4 +12,9 @@ Rails.application.routes.draw do
 
   resources :coins
   post 'coins/refresh' => 'coins#update_coin_list', as: 'update_coin_list'
+
+  resources :portfolios do
+    resources :transactions
+  end
+
 end

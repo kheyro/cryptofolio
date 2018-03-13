@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col">
+    <h1>Portfolio</h1>
+  </div>
+</div>
+
+
+<div class="row mb-5">
+  <div class="col">Total: <%= number_to_currency(current_user.total_holding) %></div>
+  <div class="col"># of transactions: <%= current_user.number_of_transactions %></div>
+  <div class="col">Profit: <%= number_to_currency(current_user.profit_amount) %> [<%= display_percent(current_user.profit_percent) %>]</div>
+  <div class="col">Best coin: <%= display_percent(current_user.best_performer) %></div>
+  <div class="col">Worst coin: <%= display_percent(current_user.worst_performer) %></div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h2>Holdings</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ticker</th>
+        <th scope="col">Name</th>
+        <th scope="col">Holding [% of portfolio]</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_user.coins.uniq.each do |coin| %>
+      <tr>
+        <td class="text-center"><%= link_to coin.symbol, coin_path(coin) %></td>
+        <td class="text-center"><%= link_to coin.name.titleize, coin_path(coin) %></td>
+        <td class="text-right"><%= number_to_currency(coin.coin_stats[:total]) %> <span class="badge badge-light"><%= display_percent(coin.coin_stats[:total]/current_user.total_holding) %></span><br> <%= display_percent(coin.coin_stats[:change]) %></td>
+        <td class="text-right"><%= number_to_currency(coin.price) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  </div>
+</div>

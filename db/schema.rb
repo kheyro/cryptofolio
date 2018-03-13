@@ -10,21 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313125347) do
+ActiveRecord::Schema.define(version: 20180313183840) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
     t.string "symbol"
     t.decimal "price"
-    t.decimal "market_cap", precision: 15
+    t.decimal "market_cap", precision: 18
     t.decimal "percentage_change_24h"
-    t.decimal "volume", precision: 15
+    t.decimal "volume", precision: 18
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "portfolios", force: :cascade do |t|
+    t.string "name"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "portfolio_id"
     t.integer "coin_id"
     t.string "trade_type"
     t.decimal "trade_quantity"
@@ -33,16 +41,16 @@ ActiveRecord::Schema.define(version: 20180313125347) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coin_id"], name: "index_transactions_on_coin_id"
-    t.index ["user_id"], name: "index_transactions_on_user_id"
+    t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.boolean "role_id", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "role_id", default: false
   end
 
 end

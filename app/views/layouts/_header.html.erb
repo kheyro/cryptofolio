@@ -10,8 +10,7 @@
           <li class="nav-item"><%= link_to "Sign in", signin_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Sign up", new_user_path, class: "nav-link" %></li>
         <% else %>
-          <li class="nav-item"><%= link_to "Portfolio", user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Add transaction", new_user_transaction_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "My Portfolios", portfolios_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Manage Coin", coins_path, class: "nav-link" if is_admin? %></li>
           <li class="nav-item"><%= link_to "Sign out", destroy_user_path, class: "nav-link" %></li>
         <% end %>

@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col">
+    <h1>My Portfolios</h1>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col text-center">
+    <%= link_to "Add portfolio", new_portfolio_path, class: "btn btn-primary"%>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @portfolios.each do |portfolio| %>
+        <tr>
+          <td class="text-center"><%= link_to portfolio.name, portfolio_path(portfolio) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
