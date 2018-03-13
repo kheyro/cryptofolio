@@ -4,8 +4,8 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
+<div class="row justify-content-md-center">
+  <div class="col-md-auto col-md-5 text-center">
     <%= form_for :user, url: signin_path do |f| %>
 
       <div class="form-group">
@@ -23,9 +23,9 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
+<div class="row mt-4">
+  <div class="col text-center">
     <p>OR</p>
-    <p><%= link_to "Sign in with Facebook", "/auth/facebook" %></p>
+    <p><%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn btn-info" %></p>
   </div>
 </div>

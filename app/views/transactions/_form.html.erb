@@ -1,0 +1,25 @@
+<%= form_for [@current_user, @transaction] do |f| %>
+
+  <div class="form-group">
+    <%= f.label :trade_quantity %>
+    <%= f.text_field :trade_quantity, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :trade_price %>
+    <%= f.text_field :trade_price, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :trade_date %>
+    <%= f.date_field :trade_date, class: "form-control", value: (f.object.trade_date ? f.object.trade_date.strftime("%Y-%m-%d") : Time.now.strftime("%Y-%m-%d")) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :coin_id %>
+    <%= f.select :coin_id, Coin.all.collect { |c| [ c.name.titleize, c.id ] }, {include_blank: true}, {class: "form-control"} %>
+  </div>
+
+  <%= f.submit class: "btn btn-primary" %>
+
+<% end %>

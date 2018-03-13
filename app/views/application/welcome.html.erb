@@ -3,6 +3,8 @@
     <h1>Welcome to Cryptofolio!</h1>
     <% if !current_user %>
       <p>Please <%= link_to "sign in", signin_path %> to start using our amazing app!</p>
+    <% else !current_user %>
+      <p>Go to your <%= link_to "Portfolio", user_path(current_user) %></p>
     <% end %>
   </div>
 </div>
