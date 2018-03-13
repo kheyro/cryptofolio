@@ -22,7 +22,7 @@ class TransactionsController < ApplicationController
 
   def update
     if @transaction.user == current_user && @transaction.update(trans_params)
-      redirect_to coin_path(params[:transaction][:coin_id])
+      redirect_to portfolio_coin_path(@transaction.portfolio)
     else
       render :edit
     end

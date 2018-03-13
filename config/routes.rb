@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy', as: 'destroy_user'
   get '/auth/:provider/callback' => 'sessions#create'
 
-  resources :coins
+  # resources :coins
   post 'coins/refresh' => 'coins#update_coin_list', as: 'update_coin_list'
 
   resources :portfolios do
     resources :transactions
+    resources :coins
   end
 
 end

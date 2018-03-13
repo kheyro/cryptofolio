@@ -1,6 +1,7 @@
 class Transaction < ApplicationRecord
   belongs_to :portfolio
   belongs_to :coin
+  has_one :user, through: :portfolio
 
   validates :trade_price, presence: true, numericality: { greater_than: 0}
   validates :trade_date, presence: true

@@ -4,7 +4,7 @@ class CoinsController < ApplicationController
 
   def show
     @coin = Coin.find_by_id(params[:id])
-    @transactions = @coin.transactions.where(:user => current_user)
+    @transactions = @coin.transactions.where(portfolio_id: params[:portfolio_id]).order(trade_date: :DESC)
   end
 
   def index

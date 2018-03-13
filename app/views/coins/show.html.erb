@@ -25,6 +25,7 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
+        <th scope="col">Date</th>
         <th scope="col">Trade price</th>
         <th scope="col">Quantity</th>
         <th scope="col">Value</th>
@@ -35,11 +36,12 @@
     <tbody>
       <% @transactions.each do |t| %>
       <tr>
+        <td class="text-center"><%= t.trade_date.strftime("%d/%m/%Y") %></td>
         <td class="text-center"><%= number_to_currency(t.trade_price) %></td>
         <td class="text-center"><%= t.trade_quantity %></td>
         <td class="text-center"><%= number_to_currency(t.trade_quantity * t.coin.price)%></td>
         <td class="text-center"><%= display_percent(1 - (t.trade_price / t.coin.price)) %></td>
-        <td class="text-center"><%= link_to "edit", edit_user_transaction_path(current_user, t), class: "btn btn-primary" %> <%= button_to "delete", user_transaction_path(current_user, t), {method: "delete", class: "btn btn-danger"} %></td>
+        <td class="text-center"><%= link_to "edit", edit_portfolio_transaction_path(t.portfolio, t), class: "btn btn-primary" %> <%= button_to "delete", portfolio_transaction_path(t.portfolio, t), {method: "delete", class: "btn btn-danger"} %></td>
       </tr>
       <% end %>
     </tbody>
