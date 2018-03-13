@@ -18,7 +18,7 @@ class Portfolio < ApplicationRecord
   end
 
   def profit_amount
-    profit_percent * total_holding
+    profit_percent * total_holding if profit_percent
   end
 
   def best_performer

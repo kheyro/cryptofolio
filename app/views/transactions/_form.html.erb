@@ -1,4 +1,4 @@
-<%= form_for [@current_user, @transaction] do |f| %>
+<%= form_for [:portfolio, @transaction] do |f| %>
 
   <div class="form-group">
     <%= f.label :trade_quantity %>

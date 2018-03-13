@@ -6,11 +6,17 @@
 
 
 <div class="row mb-5">
-  <div class="col">Total: <%= number_to_currency(current_user.total_holding) %></div>
-  <div class="col"># of transactions: <%= current_user.number_of_transactions %></div>
-  <div class="col">Profit: <%= number_to_currency(current_user.profit_amount) %> [<%= display_percent(current_user.profit_percent) %>]</div>
-  <div class="col">Best coin: <%= display_percent(current_user.best_performer) %></div>
-  <div class="col">Worst coin: <%= display_percent(current_user.worst_performer) %></div>
+  <div class="col">Total: <%= number_to_currency(@portfolio.total_holding) %></div>
+  <div class="col"># of transactions: <%= @portfolio.number_of_transactions %></div>
+  <div class="col">Profit: <%= number_to_currency(@portfolio.profit_amount) %> [<%= display_percent(@portfolio.profit_percent) %>]</div>
+  <div class="col">Best coin: <%= display_percent(@portfolio.best_performer) %></div>
+  <div class="col">Worst coin: <%= display_percent(@portfolio.worst_performer) %></div>
+</div>
+
+<div class="row mb-4">
+  <div class="col text-center">
+    <%= link_to "Add Transaction", new_portfolio_transaction_path(@portfolio), class: "btn btn-primary"%>
+  </div>
 </div>
 
 <div class="row">
@@ -32,11 +38,11 @@
       </tr>
     </thead>
     <tbody>
-      <% current_user.coins.uniq.each do |coin| %>
+      <% @portfolio.coins.uniq.each do |coin| %>
       <tr>
         <td class="text-center"><%= link_to coin.symbol, coin_path(coin) %></td>
         <td class="text-center"><%= link_to coin.name.titleize, coin_path(coin) %></td>
-        <td class="text-right"><%= number_to_currency(coin.coin_stats[:total]) %> <span class="badge badge-light"><%= display_percent(coin.coin_stats[:total]/current_user.total_holding) %></span><br> <%= display_percent(coin.coin_stats[:change]) %></td>
+        <td class="text-right"><%= number_to_currency(coin.coin_stats[:total]) %> <span class="badge badge-light"><%= display_percent(coin.coin_stats[:total]/@portfolio.total_holding) %></span><br> <%= display_percent(coin.coin_stats[:change]) %></td>
         <td class="text-right"><%= number_to_currency(coin.price) %></td>
       </tr>
       <% end %>

@@ -12,7 +12,7 @@ class PortfoliosController < ApplicationController
   def create
     @portfolio = Portfolio.new(user_params)
     @portfolio.user = current_user
-    
+
     if @portfolio.save
       redirect_to portfolios_path
     else
@@ -21,7 +21,8 @@ class PortfoliosController < ApplicationController
   end
 
   def show
-
+    @portfolio = Portfolio.find_by(id: params[:id], user: current_user)
+    redirect_to root_path, notice: "You are not the owner of this portfolio" if !@portfolio
   end
 
   private

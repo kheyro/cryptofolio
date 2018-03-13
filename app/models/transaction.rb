@@ -1,5 +1,5 @@
 class Transaction < ApplicationRecord
-  belongs_to :user
+  belongs_to :portfolio
   belongs_to :coin
 
   validates :trade_price, presence: true, numericality: { greater_than: 0}
@@ -8,7 +8,7 @@ class Transaction < ApplicationRecord
 
   validate :is_valid_trade_date?
 
-  scope :number_of_transactions, ->(user) { where("user_id = ?", user.id).count }
+  scope :number_of_transactions, ->(portfolio) { where("portfolio_id = ?", portfolio.id).count }
 
   def change_24h
     1 - self.trade_price / self.coin.price

@@ -4,14 +4,14 @@ class TransactionsController < ApplicationController
   before_action :required_signed_in, only: [:edit, :create, :destroy]
 
   def new
-    @transaction = Transaction.new(user: @current_user)
+    @transaction = Transaction.new(portfolio_id: params[:portfolio_id])
   end
 
   def create
     @transaction = Transaction.new(trans_params)
-    @transaction.user = current_user
-    if @transaction.save
-      redirect_to coin_path(@transaction.coin), notice: "Transaction successfully added! "
+    @transaction.portfolio = Portfolio.find_by_id(params[:portfolio_id])
+    if @transaction.save && @transaction.portfolio
+      redirect_to portfolio_path(@transaction.portfolio), notice: "Transaction successfully added! "
     else
       render :new
     end
