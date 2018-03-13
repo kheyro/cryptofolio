@@ -1,0 +1,2 @@
+class AddRoleIdToUser < ApplicationRecord
+end
