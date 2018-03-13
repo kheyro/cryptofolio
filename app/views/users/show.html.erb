@@ -8,9 +8,9 @@
 <div class="row mb-5">
   <div class="col">Total: <%= number_to_currency(current_user.total_holding) %></div>
   <div class="col"># of transactions: <%= current_user.number_of_transactions %></div>
-  <div class="col">24Hr change: <%= display_percent(current_user.user_change_24h) %></div>
-  <div class="col">Best performer: <%= display_percent(current_user.best_performer) %></div>
-  <div class="col">Worst performer: <%= display_percent(current_user.worst_performer) %></div>
+  <div class="col">Profit: <%= number_to_currency(current_user.profit_amount) %> [<%= display_percent(current_user.profit_percent) %>]</div>
+  <div class="col">Best coin: <%= display_percent(current_user.best_performer) %></div>
+  <div class="col">Worst coin: <%= display_percent(current_user.worst_performer) %></div>
 </div>
 
 <div class="row">

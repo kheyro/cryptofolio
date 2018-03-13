@@ -7,7 +7,7 @@
 <div class="row mb-5">
   <div class="col">Ticker: <%= @coin.symbol %></div>
   <div class="col">Price: <%= number_to_currency(@coin.price) %></div>
-  <div class="col">High: <%= number_to_currency(@coin.volume) || "-" %></div>
+  <div class="col">Volume: <%= number_to_currency(@coin.volume) || "-" %></div>
   <div class="col">Marketcap: <%= number_to_currency(@coin.market_cap) || "-" %></div>
   <div class="col">Change 24Hr: <%= display_percent(@coin.percentage_change_24h/100) if @coin.percentage_change_24h %></div>
 </div>
@@ -25,8 +25,9 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Value</th>
+        <th scope="col">Trade price</th>
         <th scope="col">Quantity</th>
+        <th scope="col">Value</th>
         <th scope="col">24Hr</th>
         <th scope="col">Action</th>
       </tr>
@@ -34,8 +35,9 @@
     <tbody>
       <% @transactions.each do |t| %>
       <tr>
-        <td class="text-center"><%= number_to_currency(t.trade_quantity * t.coin.price)%></td>
+        <td class="text-center"><%= number_to_currency(t.trade_price) %></td>
         <td class="text-center"><%= t.trade_quantity %></td>
+        <td class="text-center"><%= number_to_currency(t.trade_quantity * t.coin.price)%></td>
         <td class="text-center"><%= display_percent(1 - (t.trade_price / t.coin.price)) %></td>
         <td class="text-center"><%= link_to "edit", edit_user_transaction_path(current_user, t), class: "btn btn-primary" %> <%= button_to "delete", user_transaction_path(current_user, t), {method: "delete", class: "btn btn-danger"} %></td>
       </tr>

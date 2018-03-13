@@ -22,8 +22,12 @@ class User < ApplicationRecord
     self.transactions.map{|t| t.coin.price * t.trade_quantity }.inject(0, &:+)
   end
 
-  def user_change_24h
+  def profit_percent
     self.transactions.map{ |t| t.change_24h }.inject(0, &:+) / self.transactions.size if self.transactions.size > 0
+  end
+
+  def profit_amount
+    profit_percent * total_holding
   end
 
   def best_performer
