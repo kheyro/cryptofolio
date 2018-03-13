@@ -4,20 +4,7 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2>There were some errors:</h2>
-        <ul>
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render partial: 'layouts/form_errors', locals: {obj: @user} %>
 
 <div class="row justify-content-md-center">
   <div class="col-md-auto col-md-5 text-center">
@@ -47,9 +34,4 @@
   </div>
 </div>
 
-<div class="row mt-4">
-  <div class="col text-center">
-    <p>OR</p>
-    <p><%= link_to "Sign in with Facebook", "/auth/facebook", class: "btn  btn-info" %></p>
-  </div>
-</div>
+<%= render 'layouts/fb_button' %>
