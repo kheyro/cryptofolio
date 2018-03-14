@@ -1,24 +1,28 @@
-# README
+# Sinatra Project - Social Recipes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to Social Recipes
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Copy all folders and files
 
-* System dependencies
+And then execute:
 
-* Configuration
+    $ bundle install
 
-* Database creation
+Migrate databases and seed:
 
-* Database initialization
+    $ rake db:migrate
+    $ rake db:seed
 
-* How to run the test suite
+## Usage
 
-* Services (job queues, cache servers, search engines, etc.)
+Start server by running:
 
-* Deployment instructions
+    $ rails s
 
-* ...
+Login with admin credentials (admin@gmail.com // admin), and import all the coins.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/kheyro/sinatra-portfolio-project.
