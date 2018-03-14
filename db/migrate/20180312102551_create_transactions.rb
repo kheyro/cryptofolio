@@ -3,7 +3,6 @@ class CreateTransactions < ActiveRecord::Migration[5.1]
     create_table :transactions do |t|
       t.belongs_to :portfolio, foreign_key: true
       t.belongs_to :coin, foreign_key: true
-      t.string :trade_type
       t.decimal :trade_quantity
       t.decimal :trade_price
       t.datetime :trade_date

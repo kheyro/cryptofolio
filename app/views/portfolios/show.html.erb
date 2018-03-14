@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <h1>Portfolio</h1>
+    <h1><%= @portfolio.name %></h1>
   </div>
 </div>
 
@@ -40,8 +40,8 @@
     <tbody>
       <% @portfolio.coins.uniq.each do |coin| %>
       <tr>
-        <td class="text-center"><%= link_to coin.symbol, portfolio_coin_path(@portfolio) %></td>
-        <td class="text-center"><%= link_to coin.name.titleize, portfolio_coin_path(@portfolio) %></td>
+        <td class="text-center"><%= link_to coin.symbol, portfolio_coin_path(@portfolio, coin) %></td>
+        <td class="text-center"><%= link_to coin.name.titleize, portfolio_coin_path(@portfolio, coin) %></td>
         <td class="text-right"><%= number_to_currency(coin.coin_stats[:total]) %> <span class="badge badge-light"><%= display_percent(coin.coin_stats[:total]/@portfolio.total_holding) %></span><br> <%= display_percent(coin.coin_stats[:change]) %></td>
         <td class="text-right"><%= number_to_currency(coin.price) %></td>
       </tr>

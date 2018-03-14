@@ -1,9 +1,11 @@
 class Portfolio < ApplicationRecord
   belongs_to :user
-  has_many :transactions
+  has_many :transactions, :dependent => :delete_all
   has_many :coins, through: :transactions
 
   validates :name, presence: true
+
+  accepts_nested_attributes_for :transactions
 
   def number_of_transactions
     Transaction.number_of_transactions(self)
@@ -27,5 +29,11 @@ class Portfolio < ApplicationRecord
 
   def worst_performer
     self.transactions.map{ |t| t.change_24h }.sort.first
+  end
+
+  def transactions_attributes=(transactions_attributes)
+    transactions_attributes.values.each do |t|
+      self.transactions.build(t)
+    end
   end
 end

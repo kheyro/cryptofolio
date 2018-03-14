@@ -15,6 +15,36 @@
         <%= f.text_field :name, class: "form-control" %>
       </div>
 
+      <fieldset>
+
+        <legend>Add your first transaction</legend>
+
+        <%= f.fields_for :transactions, @portfolio.transactions.build do |t| %>
+
+          <div class="form-group">
+            <%= t.label :coin_id %>
+            <%= t.select :coin_id, Coin.all.collect { |c| [ c.name.titleize, c.id ] }, {include_blank: true}, {class: "form-control"}  %>
+          </div>
+
+          <div class="form-group">
+            <%= t.label :trade_quantity %>
+            <%= t.text_field :trade_quantity, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= t.label :trade_price %>
+            <%= t.text_field :trade_price, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= t.label :trade_date %>
+            <%= t.date_field :trade_date, class: "form-control" %>
+          </div>
+
+          <% end %>
+
+      </fieldset>
+
       <%= f.submit class: "btn btn-primary" %>
     <% end %>
   </div>

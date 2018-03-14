@@ -12,6 +12,11 @@
   <div class="col">Change 24Hr: <%= display_percent(@coin.percentage_change_24h/100) if @coin.percentage_change_24h %></div>
 </div>
 
+<div class="row mb-4">
+  <div class="col text-center">
+    <%= link_to "Add #{@coin.name} Transaction", {controller: "transactions", action: "new", portfolio_id: @transactions.first.portfolio.id, coin_id: @coin.id}, class: "btn btn-primary" %>
+  </div>
+</div>
 
 <div class="row">
   <div class="col">

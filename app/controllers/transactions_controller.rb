@@ -11,7 +11,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(trans_params)
     @transaction.portfolio = Portfolio.find_by_id(params[:portfolio_id])
     if @transaction.save && @transaction.portfolio
-      redirect_to portfolio_path(@transaction.portfolio), notice: "Transaction successfully added! "
+      redirect_to portfolio_coin_path(@transaction.portfolio, @transaction.coin), notice: "Transaction successfully added! "
     else
       render :new
     end
@@ -22,7 +22,7 @@ class TransactionsController < ApplicationController
 
   def update
     if @transaction.user == current_user && @transaction.update(trans_params)
-      redirect_to portfolio_coin_path(@transaction.portfolio)
+      redirect_to portfolio_coin_path(@transaction.portfolio, @transaction.coin)
     else
       render :edit
     end
@@ -30,10 +30,9 @@ class TransactionsController < ApplicationController
 
   def destroy
     if @transaction.user == current_user
-      @coin = @transaction.coin
       @transaction.destroy
     end
-    redirect_to coin_path(@coin)
+    redirect_to portfolio_coin_path(@transaction.portfolio, @transaction.coin)
   end
 
   private
