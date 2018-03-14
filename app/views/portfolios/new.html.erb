@@ -38,7 +38,7 @@
 
           <div class="form-group">
             <%= t.label :trade_date %>
-            <%= t.date_field :trade_date, class: "form-control" %>
+            <%= t.date_field :trade_date, class: "form-control", value: Time.now.strftime("%Y-%m-%d") %>
           </div>
 
           <% end %>

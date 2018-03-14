@@ -24,7 +24,7 @@
         <% @portfolios.each do |portfolio| %>
         <tr>
           <td class="text-center"><%= link_to portfolio.name, portfolio_path(portfolio) %></td>
-          <td class="text-right"><%= number_to_currency(portfolio.total_holding) %></td>
+          <td class="text-center"><%= number_to_currency(portfolio.total_holding) %></td>
           <td class="text-center"><%= link_to "edit", edit_portfolio_path(portfolio), class: "btn btn-primary" %> <%= button_to "delete", portfolio_path(portfolio), {method: "delete", class: "btn btn-danger"} %></td>
         </tr>
         <% end %>

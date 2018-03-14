@@ -18,7 +18,7 @@ class Transaction < ApplicationRecord
   private
 
   def is_valid_trade_date?
-    if !Date.parse(trade_date.strftime("%Y-%m-%d"))|| trade_date.to_date > DateTime.now.to_date
+    if trade_date && (!Date.parse(trade_date.strftime("%Y-%m-%d")) || trade_date.to_date > DateTime.now.to_date)
       errors.add(:trade_date, 'Sorry, Invalid trade date entered.')
     end
   end

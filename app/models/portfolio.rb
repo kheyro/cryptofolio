@@ -6,7 +6,7 @@ class Portfolio < ApplicationRecord
   validates :name, presence: true
 
   accepts_nested_attributes_for :transactions
-
+  
   def number_of_transactions
     Transaction.number_of_transactions(self)
   end
