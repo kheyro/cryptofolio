@@ -1,6 +1,6 @@
 class Coin < ApplicationRecord
   has_many :transactions
-  has_many :uesers, through: :transactions
+  has_many :users, through: :transactions
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :symbol, presence: true, uniqueness: { case_sensitive: false }
